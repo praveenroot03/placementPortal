@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Error 404</title>
+    <link rel='stylesheet' href='/stylesheets/error.css' />
+  </head>
+  <body class="error">
+  	
+    	<h1>Oops! error <%= error.status %></h1>
+      <h2>Page <%= message %></h2>
+      <hr>
+      <div class="log">
+    	  <div style="color:red;font-size: 350%;">
+          Log
+        </div>
+        <pre><%= error.stack %></pre>
+      </div>
+      <h1>
+          <a href="/">Home</a>
+        </h1>
+  </body>
+</html>
+
+

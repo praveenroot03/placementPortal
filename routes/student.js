@@ -6,7 +6,7 @@ var csrf = require('csurf');
 router.use(csrf());
 
 router.get('/login', function(req, res, next) {
-  res.render('studentLogin', { error : '', csrfToken: req.csrfToken()});
+  return res.render('studentLogin', { error : '', csrfToken: req.csrfToken()});
 });
 
 router.post('/login', function(req, res, next) {
@@ -22,14 +22,15 @@ router.post('/login', function(req, res, next) {
 });
 
 router.get('/register', function(req, res, next) {
-    res.render('studentRegister', { error : '', csrfToken: req.csrfToken()});
+    return res.render('studentRegister', { error : '', csrfToken: req.csrfToken()});
 });
 
 router.post('/register', function(req, res, next) {
   // console.log(req.body);
 
   if (!(req.body.password === req.body.passwordck)){
-    res.render('studentRegister', { error : 'Check password', csrfToken: req.csrfToken()});
+    return res.render('studentRegister', { error : 'Check password', csrfToken: req.csrfToken()});
+    
   }
 
   var studentData = {
@@ -42,7 +43,7 @@ router.post('/register', function(req, res, next) {
   students.create(studentData, function (err, student) {
     if (err) {
       if (err.name === 'MongoError' && err.code === 11000) {
-        res.render('studentRegister', { error : 'Email or mobile number already exist', csrfToken: req.csrfToken()});
+        return res.render('studentRegister', { error : 'Email or mobile number already exist', csrfToken: req.csrfToken()});
         //return next(new Error('Email or mobile number already exist'));
       }
       // keep this just only for dev purpose

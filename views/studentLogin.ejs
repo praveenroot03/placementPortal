@@ -1,0 +1,11 @@
+<form action="/student/login" method="post">
+    <input type="email" required name="email" id="email">
+    <input type="password" required name="password" id="password">
+    <input type="hidden" name="_csrf" id="_csrf" required value="<%= csrfToken%>">
+    <input type="submit">
+    <div>
+        <span>
+            <%= error%>
+        </span>
+    </div>
+</form>

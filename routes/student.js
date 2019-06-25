@@ -27,6 +27,11 @@ router.get('/register', function(req, res, next) {
 
 router.post('/register', function(req, res, next) {
   // console.log(req.body);
+
+  if (!(req.body.password === req.body.passwordck)){
+    res.render('studentRegister', { error : 'Check password', csrfToken: req.csrfToken()});
+  }
+
   var studentData = {
     email : req.body.email,
     name : req.body.name,
@@ -37,12 +42,13 @@ router.post('/register', function(req, res, next) {
   students.create(studentData, function (err, student) {
     if (err) {
       if (err.name === 'MongoError' && err.code === 11000) {
-        return next(new Error('Email or mobile number already exist'));
+        res.render('studentRegister', { error : 'Email or mobile number already exist', csrfToken: req.csrfToken()});
+        //return next(new Error('Email or mobile number already exist'));
       }
       // keep this just only for dev purpose
-      else {
-        return next(err);
-      }
+      // else {
+      //   return next(err);
+      // }
       //------------------------------------
     }
     else {

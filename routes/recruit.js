@@ -100,7 +100,7 @@ router.get('/upload/profilepic',isLogin, function(req, res, next){
       else {
         //console.log(data);
         
-        return res.render('studentDashboard',{data: data});
+        return res.render('recruitDashboard',{data: data});
       }
     });
   });

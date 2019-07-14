@@ -65,7 +65,7 @@ router.post('/register', function(req, res, next) {
       //------------------------------------
     }
     else {
-      req.session.stustudentdentID = student._id;
+      req.session.studentID = student._id;
       return res.redirect("/student/dashboard");
     }
   }

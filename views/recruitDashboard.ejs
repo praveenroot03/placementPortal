@@ -1,0 +1,16 @@
+<h1 style="text-align: center">Dashboard</h1>
+<div>
+    This going to be dashboard  
+</div>
+
+<div>
+    Hello! <% if (data) {%> <%=data.name%> <%}%>
+    <span>
+        Email: <% if (data) {%> <%=data.email%> <%}%>
+        Mobile no. <% if (data){%> <%=data.phoneno%> <%}%>
+    </span>
+</div>
+
+<form action="logout" method="GET">
+    <input type="submit" value="logout">
+</form>

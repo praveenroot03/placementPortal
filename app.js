@@ -9,13 +9,17 @@ var nodemailer = require('nodemailer');
 var mongoose = require('mongoose');
 var xssFilter = require('x-xss-protection')
 
-var mongoURI = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/test';
+var mongoURI = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/placementportal';
 
 var students = require('./models/student');
-mongoose.connect(mongoURI, {dbName: 'test'}, {useNewUrlParser: true},{ useCreateIndex: true });
+var recrutes = require('./models/recruit');
+var jobs = require('./models/job');
+mongoose.connect(mongoURI, {dbName: 'placementportal'}, {useNewUrlParser: true},{ useCreateIndex: true });
 
 var indexRouter = require('./routes/index');
+var loginRouter = require('./routes/login');
 var studentRouter = require('./routes/student');
+var recruitRouter = require('./routes/recruit');
 var db = mongoose.connection;
 
 var app = express();
@@ -34,18 +38,18 @@ app.use(session({
   name: 'SESSION_ID',
   secret: 'P0rTF0lIo1:][-#',
   resave: false,
-  duration: 30 * 60 * 1000,
-  activeDuration: 5 * 60 * 1000,
-  saveUninitialized: true, 
+  saveUninitialized: false,
+  maxAge : 10000,
   secure: true,
   httpOnly : true,
-  ephemeral: true,
   store: new MongoStore({ mongooseConnection: db })
 }));
 
 
 app.use('/', indexRouter);
+app.use('/login',loginRouter);
 app.use('/student', studentRouter);
+app.use('/recruit', recruitRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

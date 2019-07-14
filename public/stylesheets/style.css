@@ -56,7 +56,6 @@ body, html {
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
-  display: block;
 }
 
 .button span {

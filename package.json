@@ -10,7 +10,8 @@
   },
   "devDependencies": {
     "request": "^2.81.0",
-    "tape": "^4.7.0"
+    "tape": "^4.7.0",
+    "lodash": ">=4.17.13"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",

@@ -34,18 +34,18 @@
 					Sign Up!
 				</span>
 
-				<div class="wrap-input1 validate-input" data-validate = "Name is required">
-					<input class="input1" type="text" name="name" placeholder="Name" required>
+				<div class="wrap-input1 validate-input">
+					<input class="input1" type="text" name="name" placeholder="Name" required required pattern=".{3,}" title="Name must be greater than 3 char">
 					<span class="shadow-input1"></span>
 				</div>
 
-				<div class="wrap-input1 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-					<input class="input1" type="text" name="email" placeholder="Email">
+				<div class="wrap-input1 validate-input" >
+					<input class="input1" type="email" name="email" placeholder="Email" placeholder="Email" title= "Valid email is required eg: ex@abc.xyz">
 					<span class="shadow-input1"></span>
 				</div>
 
-				<div class="wrap-input1 validate-input" data-validate = "Subject is required">
-					<input class="input1" type="password" name="password" placeholder="Password">
+				<div class="wrap-input1 validate-input">
+					<input class="input1" type="password" name="password" placeholder="Password" placeholder="Password" title= "Password must be miminum 8 length" pattern=".{8,50}">
 					<span class="shadow-input1"></span>
 				</div>
 
@@ -54,8 +54,8 @@
 					<span class="shadow-input1"></span>
 				</div>
 
-				<div class="wrap-input1 validate-input" data-validate = "Phone Number is required">
-					<input class="input1" type="text" name="phoneno" placeholder="Number" pattern="[789][0-9]{9}">
+				<div class="wrap-input1 validate-input" >
+					<input class="input1" type="text" name="phoneno" placeholder="Number" pattern="[789][0-9]{9}" title= "Valid number is required eg: 9568745624">
 					<span class="shadow-input1"></span>
 				</div>
 

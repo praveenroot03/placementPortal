@@ -26,6 +26,7 @@
     "express-session": "~1.16.2",
     "x-xss-protection": "~1.2.0",
     "bcrypt": "~3.0.6",
-    "csurf": "~1.10.0"
+    "csurf": "~1.10.0",
+    "uuid": "3.3.2"
   }
 }

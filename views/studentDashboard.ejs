@@ -1,16 +1,214 @@
-<h1 style="text-align: center">Dashboard</h1>
-<div>
-    This going to be dashboard  
-</div>
+ <!doctype html>
+ <html lang="en">
+ 
+        <style type="text/css">
 
-<div>
-    Hello! <% if (data) {%> <%=data.name%> <%}%>
-    <span>
-        Email: <% if (data) {%> <%=data.email%> <%}%>
-        Mobile no. <% if (data){%> <%=data.phoneno%> <%}%>
-    </span>
-</div>
+            #search {
+              height: 80px;
+              width: 80px;
+              border: solid 5px;
+              border-radius: 50px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-size: 35px;
+              transition: 0.3s;
+            
+            }
+            
+            .searchFinal{
+                display: flex;
+              align-items: center;
+              justify-content: center;
+              margin-bottom: 30px;
+            }
+            
+            #search-input {
+              height: 100%;
+              width: 0px;
+              font-size: 28px;
+              font-weight: 600;
+              background: none;
+              color: black;
+              padding-top: 15px;
+              border: none;
+              outline: 0;
+              visibility: hidden;
+              transition: 0.3s;
+            }
+            
+            #search.active {
+              width: 350px;
+            }
+            
+            #search-input.active {
+              width: 260px;
+              margin-left: 16px;
+              visibility: visible;
+            }
+            </style>
 
-<form action="logout" method="GET">
-    <input type="submit" value="logout">
-</form>
+ <head>
+   <title>Placement portal</title>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+   <!--     Fonts and icons     -->
+   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+   <!-- Material Kit CSS -->
+   <link href="css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
+
+   
+ </head>
+ 
+ <body>
+   <div class="wrapper ">
+     <div class="sidebar" data-color="purple" data-background-color="white">
+       <!--
+       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+ 
+       Tip 2: you can also add an image using data-image tag
+   -->
+       <div class="logo">
+         <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+           Placement Portal
+         </a>
+       </div>
+       <div class="sidebar-wrapper">
+         <ul class="nav">
+           <li class="nav-item active  ">
+             <a class="nav-link" href="../dashboard">
+               <i class="material-icons">dashboard</i>
+               <p>Dashboard</p>
+             </a>
+           </li><li class="nav-item active  ">
+             <a class="nav-link" href="#0">
+               <i class="material-icons">perm_identity</i>
+               <p>Profile</p>
+             </a>
+           </li>
+           </li><li class="nav-item active  ">
+             <a class="nav-link" href="appliedCom/applied.html">
+               <i class="material-icons">done</i>
+               <p>Applied Companies</p>
+             </a>
+           </li>
+           </li><li class="nav-item active  ">
+             <a class="nav-link" href="../logout">
+               <i class="material-icons">power_settings_new</i>
+               <p>Log out</p>
+             </a>
+           </li>
+           <!-- your sidebar here -->
+         </ul>
+       </div>
+     </div>
+     <div class="main-panel">
+       <!-- Navbar -->
+       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+         <div class="container-fluid">
+           <div class="navbar-wrapper">
+             <a class="navbar-brand" href="#pablo">Dashboard</a>
+           </div>
+           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="sr-only">Toggle navigation</span>
+             <span class="navbar-toggler-icon icon-bar"></span>
+             <span class="navbar-toggler-icon icon-bar"></span>
+             <span class="navbar-toggler-icon icon-bar"></span>
+           </button>
+           <div class="collapse navbar-collapse justify-content-end">
+             <ul class="navbar-nav">
+               <li class="nav-item">
+                 <a class="nav-link" href="#pablo">
+                   <i class="material-icons">notifications</i> Notifications
+                 </a>
+               </li>
+               <!-- your navbar here -->
+             </ul>
+           </div>
+         </div>
+       </nav>
+       <!-- End Navbar -->
+
+       <div class="content">
+         <div class="container-fluid">
+                <div class="row">
+                        <div class="col-md-6 ml-auto mr-auto">
+                          <div class="searchFinal">
+                                          
+                        <div id="search">
+                          <i class="material-icons" id="search-icon">search</i>
+                          <form method="GET" action="../dashboard">
+                            <input type="text" id="search-input" name="search" autocomplete="off">
+                          </form>
+                        </div>
+                          </div>
+                        </div>
+                      </div>
+           <div class="row">
+            <% for (var i=0; i< jobs.length; i++) {%>
+               <div class="col-md-6 ml-auto mr-auto">
+                 <div class="card card-chart">
+                   <div class="card-header card-header-rose" data-header-animation="true">
+                       <div style="text-align: center; font-size: 35px;"><%=jobs[i].name%></div>
+                   </div>
+                   <div class="card-body">
+                       <div class="card-actions">
+                           <a href="../getjob?jobid=<%=jobs[i]._id%>"><button type="button" class="btn btn-info btn-link" rel="tooltip" data-placement="bottom" title="Apply for the company" style="font-size: 24px;">
+                            <i class="material-icons">assignment</i>
+                          </button></a>
+                           <button type="button" class="btn btn-default btn-link" rel="tooltip" data-placement="bottom" title="bookmark" style="font-size: 24px;">
+                             <i class="material-icons">bookmark</i>
+                           </button>
+ 
+                           <button type="button" class="btn btn-default btn-link" rel="tooltip" data-placement="bottom" title="Full description" style="font-size: 24px;">
+                             <i class="material-icons">speaker_notes</i>
+                           </button>
+                       </div>
+                       <h4 class="card-title"><%=jobs[i].role%></h4>
+                       <p class="card-category">No. of Applied - <%=jobs[i].studentid.length%></p>
+                       <p class="card-category"> Salary - Rs <%=jobs[i].salary%></p>
+                   </div>
+                   <div class="card-footer">
+                     <div class="stats">
+                         <i class="material-icons">access_time</i> Created on <%=jobs[i].datecreated%>
+                     </div>
+                   </div>
+               </div>
+             </div>
+
+             <% } %>
+           </div>
+         </div>
+       </div>
+       
+     </div>
+   </div>
+ </body>
+ 
+ <script type="text/javascript">
+    const body = document.querySelector('body');
+  const searchBtn = document.querySelector('#search');
+  const searchInput = document.querySelector('#search-input');
+  let active = false;
+  
+  body.addEventListener('click', (e) => {
+    if(e.target.id === 'search' || e.target.id === 'search-input' || e.target.id === 'search-icon') {
+      if(!active) {
+        searchBtn.classList.add('active');
+        searchInput.classList.add('active');
+        active = true;
+      }
+    } else {
+        searchBtn.classList.remove('active');
+        searchInput.classList.remove('active');
+        searchInput.value = '';
+        active = false;
+    }
+  });
+  </script>
+
+ </html>
+ 

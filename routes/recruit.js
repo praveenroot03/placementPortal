@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var recruits = require('../models/recruit')
+var recruits = require('../models/recruit');
+var jobs = require('../models/job');
 var csrf = require('csurf');
 
 router.use(csrf());
@@ -103,6 +104,26 @@ router.get('/upload/profilepic',isLogin, function(req, res, next){
         return res.render('recruitDashboard',{data: data});
       }
     });
+  });
+
+  router.get('/addjob',isLogin,function(req,res,next){
+    return res.render('jobcreate', {csrfToken: req.csrfToken()});
+  });
+
+  router.post('/addjob',isLogin,function (req,res,next){
+    console.log(req.body);
+    
+      jobs.addjob(req.body.name,req.body.role,req.body.description,req.session.recruitID,req.body.salary,function(err){
+        if(err){
+          console.log("Error");
+          
+          return res.send("error adding data");
+        }
+        else{
+          console.log("Done data");
+          return res.send("data added");
+        }
+      });
   });
 
 module.exports = router;

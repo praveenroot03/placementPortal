@@ -106,5 +106,17 @@ recruitSchema.statics.getdata = function (recruitid, callback) {
         })
 };
 
+recruitSchema.statics.addjobid = function (recruitid,jobid, callback) { 
+    console.log(recruitid,jobid);
+    recruit.update({_id:recruitid},{ $push: { jobid: jobid}})
+        .exec(function (err, job) {
+            if(err)
+                return callback(err);
+            else
+                console.log("job linked to recruit")
+            
+        })
+}
+
 var recruit = mongoose.model('Recruit', recruitSchema);
 module.exports = recruit;

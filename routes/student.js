@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var students = require('../models/student')
+var jobs = require('../models/job')
 var csrf = require('csurf');
 
 router.use(csrf());
@@ -93,16 +94,38 @@ router.get('/upload/profilepic',isLogin, function(req, res, next){
 });
 
   router.get('/dashboard',isLogin ,function (req, res, next) {
-     students.getdata(req.session.studentID, function (error, data){
-      if (error || !data){
-        //return res.render('studentLogin',{ error: 'wrong Username / password', csrfToken: req.csrfToken()});
+      var search = req.query.search;
+
+      if(search == undefined){
+        jobs.getalljobs(function (err, result){
+          if(err)
+            return res.send("wrong");            
+          return res.render("studentDashboard", {"jobs":result});
+        })
       }
-      else {
-        console.log(data);
-        
-        return res.render('studentDashboard',{data: data});
+      else{
+        jobs.getjobs(search, function (err, result){
+          if(err)
+            return res.send("Something went wrong");
+          return res.render("studentDashboard", {"jobs":result});
+        })
       }
-    });
+
   });
+
+    router.get('/getjob',isLogin, function (req, res, next){
+        var jobid = req.query.jobid;
+        jobs.getjob(jobid, function (err, result){
+          if (err)
+            return result.send("error");
+          // jobs.applyjob(req.session.studentID,jobid, function (err, result){
+          //   if(err)
+          //     return res.send("wrong wrong");
+          //     return res.send(result);
+          // })
+          jobs.applyjob(req.session.studentID,jobid);
+          return res.send("Applied");
+        })
+    })
 
 module.exports = router;

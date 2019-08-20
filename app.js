@@ -39,7 +39,7 @@ app.use(session({
   secret: 'P0rTF0lIo1:][-#',
   resave: false,
   saveUninitialized: false,
-  maxAge : 10000,
+  maxAge : 10000 * 60,
   secure: true,
   httpOnly : true,
   store: new MongoStore({ mongooseConnection: db })

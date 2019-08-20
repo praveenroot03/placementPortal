@@ -1,0 +1,168 @@
+
+
+ <!doctype html>
+ <html lang="en">
+ <head>
+   <title>Job Creation Portal</title>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+   <!--     Fonts and icons     -->
+   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+   <!-- Material Kit CSS -->
+   <link href="css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
+ </head>
+ 
+ <body>
+   <div class="wrapper ">
+     <div class="sidebar" data-color="purple" data-background-color="white">
+       <!--
+       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+ 
+       Tip 2: you can also add an image using data-image tag
+   -->
+       <div class="logo">
+         <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+           Job Creation Portal
+         </a>
+       </div>
+       <div class="sidebar-wrapper">
+         <ul class="nav">
+           <li class="nav-item active  ">
+             <a class="nav-link" href="#0">
+               <i class="material-icons">dashboard</i>
+               <p>Dashboard</p>
+             </a>
+           </li><li class="nav-item active  ">
+             <a class="nav-link" href="#0">
+               <i class="material-icons">perm_identity</i>
+               <p>Profile</p>
+             </a>
+           </li>
+           </li><li class="nav-item active  ">
+             <a class="nav-link" href="appliedCom/applied.html">
+               <i class="material-icons">done</i>
+               <p>Create recruit drive</p>
+             </a>
+           </li>
+           </li><li class="nav-item active  ">
+             <a class="nav-link" href="#0">
+               <i class="material-icons">power_settings_new</i>
+               <p>Log out</p>
+             </a>
+           </li>
+           <!-- your sidebar here -->
+         </ul>
+       </div>
+     </div>
+     <div class="main-panel">
+       <!-- Navbar -->
+       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+         <div class="container-fluid">
+           <div class="navbar-wrapper">
+             <a class="navbar-brand" href="#pablo">Dashboard</a>
+           </div>
+           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="sr-only">Toggle navigation</span>
+             <span class="navbar-toggler-icon icon-bar"></span>
+             <span class="navbar-toggler-icon icon-bar"></span>
+             <span class="navbar-toggler-icon icon-bar"></span>
+           </button>
+           <div class="collapse navbar-collapse justify-content-end">
+             <ul class="navbar-nav">
+               <li class="nav-item">
+                 <a class="nav-link" href="#pablo">
+                   <i class="material-icons">notifications</i> Notifications
+                 </a>
+               </li>
+               <!-- your navbar here -->
+             </ul>
+           </div>
+         </div>
+       </nav>
+       <!-- End Navbar -->
+       <div class="content">
+         <div class="container-fluid">
+           <div class="row">
+             <div class="col-md-12 ml-auto mr-auto">
+               
+                 <div class="card card-nav-tabs text-center">
+                   <div class="card-header card-header-warning">
+                     You are step away to post your requirements
+                   </div>
+                   <div class="card-body">
+                     <h4 class="card-title">Fill in the details to get started</h4>
+                     <form method="POST" action="../addjob">
+                       <div class="input-group">
+                         <div class="input-group-prepend">
+                           <span class="input-group-text">
+                             <i class="material-icons">account_balance</i>
+                           </span>
+                         </div>
+                         <input type="text" class="form-control" placeholder="Company" name="name">
+                       </div>
+                       <div class="input-group">
+                         <div class="input-group-prepend">
+                           <span class="input-group-text">
+                             <i class="material-icons">perm_identity</i>
+                           </span>
+                         </div>
+                         <input type="text" class="form-control" placeholder="Role" name="role">
+                       </div>
+                       <div class="input-group">
+                         <div class="input-group-prepend">
+                           <span class="input-group-text">
+                             <i class="material-icons">attach_money</i>
+                           </span>
+                         </div>
+                         <input type="text" class="form-control" placeholder="Salary" name="salary">
+                       </div>
+                       <div class="input-group">
+                         <div class="input-group-prepend">
+                           <span class="input-group-text">
+                             <i class="material-icons">description</i>
+                           </span>
+                         </div>
+                         <textarea class="form-control" rows="4" cols="50" placeholder="Job description" name="description"></textarea>
+                       </div>
+                       <input type="hidden" name="_csrf" id="_csrf" required value="<%= csrfToken%>">
+                       <input type="submit" class="btn btn-primary" value="Upload Requirement">
+                     </form>
+                   </div>
+                 </div>
+ 
+             </div>   
+               
+           </div>
+           </div>
+         </div>
+       </div>
+       
+     </div>
+   </div>
+ </body>
+ <script type="text/javascript">
+   const body = document.querySelector('body');
+ const searchBtn = document.querySelector('#search');
+ const searchInput = document.querySelector('#search-input');
+ let active = false;
+ 
+ body.addEventListener('click', (e) => {
+   if(e.target.id === 'search' || e.target.id === 'search-input' || e.target.id === 'search-icon') {
+     if(!active) {
+       searchBtn.classList.add('active');
+       searchInput.classList.add('active');
+       active = true;
+     }
+   } else {
+       searchBtn.classList.remove('active');
+       searchInput.classList.remove('active');
+       searchInput.value = '';
+       active = false;
+   }
+ });
+ </script>
+ </html>
+ 

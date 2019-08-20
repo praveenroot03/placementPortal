@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
+//var jobs = require('../models/job');
 SALT_WORK_FACTOR = 10;
 
 var studentSchema = new mongoose.Schema({
@@ -133,6 +134,39 @@ studentSchema.statics.uploadphoto = function (studentid, filename, callback) {
             } 
         })
 }
+
+studentSchema.statics.getskillset = function (studentid, callback){
+    student.findById(studentid)
+        .exec(function (err, student){
+            if(err)
+                return callback(err)
+            else{
+                var data = {skillset : student.skillset};
+                return callback(null,data);
+            }
+        })
+}
+
+studentSchema.statics.addidapplied = function (studentid,jobid) {
+    students.update({_id:studentid},{ $push: { appliedjob: jobid}})
+        .exec(function (err, student) {
+            if(err)
+                return callback(err);
+            else{
+                return callback(null,student);
+            }
+                            
+        })
+}
+
+studentSchema.statics.getprofile = function (studentid, callback) {
+    students.findById(studentid)
+        .exec(function (err, student){
+            if(err)
+                return callback(err);
+            return callback(null,student);
+        })
+};
 
 var student = mongoose.model('Students', studentSchema);
 module.exports = student;
